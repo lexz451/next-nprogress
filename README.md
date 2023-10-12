@@ -64,12 +64,14 @@ export default function RootLayout({
         <Navbar />
         {children}
         <Footer />
-        <ProgressBar
-          color='#333'
-          height='2px'
-          options={{}}
-          delay={0}
-        />
+        <Suspense fallback={null}>
+          <ProgressBar
+            color='#333'
+            height='2px'
+            options={{}}
+            delay={0}
+          />
+        </Suspense>
       </body>
     </html>
   )
