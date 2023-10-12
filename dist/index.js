@@ -1,76 +1,76 @@
-'use strict';
-
-var tslib = require('tslib');
-var NextLink = require('next/link');
-var React = require('react');
-var nProgress = require('nprogress');
-var navigation = require('next/navigation');
-
-function isModifiedEvent(event) {
-    var eventTarget = event.currentTarget;
-    var target = eventTarget.getAttribute("target");
-    return ((target && target !== "_self") ||
-        event.metaKey ||
-        event.ctrlKey ||
-        event.shiftKey ||
-        event.altKey || // triggers resource download
-        (event.nativeEvent && event.nativeEvent.button === 1));
-}
-var shouldTriggerProgressStart = function (href, event) {
-    var current = window.location;
-    var target = new URL(href.toString(), window.location.href);
-    if (event && isModifiedEvent(event))
-        return false;
-    if (current.origin !== target.origin)
-        return false;
-    if (current.pathname === target.pathname && current.search === target.search)
-        return false;
-    return true;
-};
-
-function Link(props) {
-    return (React.createElement(NextLink, tslib.__assign({}, props, { onClick: function (event) {
-            if (shouldTriggerProgressStart(props.href, event))
-                nProgress.start();
-            if (props.onClick)
-                props.onClick(event);
-        }, className: props.className }), props.children));
-}
-
-var ProgressBar = React.memo(function ProgressBar(props) {
-    if (props === void 0) { props = {
-        color: '#29D',
-        height: '2px',
-        options: nProgress.settings,
-        delay: 0,
-    }; }
-    nProgress.configure(props.options);
-    var pathName = navigation.usePathname();
-    var searchParams = navigation.useSearchParams();
-    React.useEffect(function () {
-        nProgress.done();
-    }, [pathName, searchParams]);
-    var color = props.color, height = props.height;
-    return (React.createElement("style", null, "\n                      #nprogress {\n                        pointer-events: none;\n                      }\n            \n                      #nprogress .bar {\n                        background: ".concat(color, ";\n            \n                        position: fixed;\n                        z-index: 1031;\n                        top: 0;\n                        left: 0;\n            \n                        width: 100%;\n                        height: ").concat(height, ";\n                      }\n            \n                      /* Fancy blur effect */\n                      #nprogress .peg {\n                        display: block;\n                        position: absolute;\n                        right: 0px;\n                        width: 100px;\n                        height: 100%;\n                        box-shadow: 0 0 10px ").concat(color, ", 0 0 5px ").concat(color, ";\n                        opacity: 1.0;\n            \n                        -webkit-transform: rotate(3deg) translate(0px, -4px);\n                            -ms-transform: rotate(3deg) translate(0px, -4px);\n                                transform: rotate(3deg) translate(0px, -4px);\n                      }\n            \n                      /* Remove these to get rid of the spinner */\n                      #nprogress .spinner {\n                        display: block;\n                        position: fixed;\n                        z-index: 1031;\n                        top: 15px;\n                        right: 15px;\n                      }\n            \n                      #nprogress .spinner-icon {\n                        width: 18px;\n                        height: 18px;\n                        box-sizing: border-box;\n            \n                        border: solid 2px transparent;\n                        border-top-color: ").concat(color, ";\n                        border-left-color: ").concat(color, ";\n                        border-radius: 50%;\n            \n                        -webkit-animation: nprogress-spinner 400ms linear infinite;\n                                animation: nprogress-spinner 400ms linear infinite;\n                      }\n            \n                      .nprogress-custom-parent {\n                        overflow: hidden;\n                        position: relative;\n                      }\n            \n                      .nprogress-custom-parent #nprogress .spinner,\n                      .nprogress-custom-parent #nprogress .bar {\n                        position: absolute;\n                      }\n            \n                      @-webkit-keyframes nprogress-spinner {\n                        0%   { -webkit-transform: rotate(0deg); }\n                        100% { -webkit-transform: rotate(360deg); }\n                      }\n                      @keyframes nprogress-spinner {\n                        0%   { transform: rotate(0deg); }\n                        100% { transform: rotate(360deg); }\n                      }\n                ")));
-}, function () { return true; });
-ProgressBar.displayName = "ProgressBar";
-
-var useRouter = function () {
-    var router = navigation.useRouter();
-    var push = function (href, options) {
-        if (shouldTriggerProgressStart(href)) {
-            nProgress.start();
-        }
-        router.push(href, options);
-    };
-    var back = function () {
-        nProgress.start();
-        return router.back();
-    };
-    return tslib.__assign(tslib.__assign({}, router), { push: push, back: back });
-};
-
-exports.Link = Link;
-exports.ProgressBar = ProgressBar;
-exports.useRouter = useRouter;
+"use client"
+var w=Object.create;var a=Object.defineProperty;var E=Object.getOwnPropertyDescriptor;var N=Object.getOwnPropertyNames;var T=Object.getPrototypeOf,R=Object.prototype.hasOwnProperty;var A=(r,e)=>{for(var t in e)a(r,t,{get:e[t],enumerable:!0})},d=(r,e,t,n)=>{if(e&&typeof e=="object"||typeof e=="function")for(let o of N(e))!R.call(r,o)&&o!==t&&a(r,o,{get:()=>e[o],enumerable:!(n=E(e,o))||n.enumerable});return r};var i=(r,e,t)=>(t=r!=null?w(T(r)):{},d(e||!r||!r.__esModule?a(t,"default",{value:r,enumerable:!0}):t,r)),M=r=>d(a({},"__esModule",{value:!0}),r);var O={};A(O,{Link:()=>f,ProgressBar:()=>k,useRouter:()=>L});module.exports=M(O);var l=i(require("next/link")),s=i(require("react"));function S(r){let t=r.currentTarget.getAttribute("target");return t&&t!=="_self"||r.metaKey||r.ctrlKey||r.shiftKey||r.altKey||r.nativeEvent&&r.nativeEvent.button===1}var p=(r,e)=>{let t=window.location,n=new URL(r.toString(),window.location.href);return!(e&&S(e)||t.origin!==n.origin||t.pathname===n.pathname&&t.search===n.search)};var h=i(require("nprogress"));function v(r){return s.default.createElement(l.default,{...r},r.children)}function f(r){return s.default.createElement(s.Suspense,{fallback:s.default.createElement(v,{...r})},s.default.createElement(l.default,{...r,onClick:e=>{p(r.href,e)&&h.default.start(),r.onClick&&r.onClick(e)}},r.children))}var b=i(require("react")),m=require("next/navigation"),g=i(require("nprogress")),c=require("react"),x=(0,c.memo)(function(e={color:"#29D",height:"2px",options:g.default.settings,delay:0}){g.default.configure(e.options);let t=(0,m.usePathname)(),n=(0,m.useSearchParams)();(0,c.useEffect)(()=>{g.default.done()},[t,n]);let{color:o,height:y}=e;return b.default.createElement("style",null,`
+                      #nprogress {
+                        pointer-events: none;
+                      }
+            
+                      #nprogress .bar {
+                        background: ${o};
+            
+                        position: fixed;
+                        z-index: 1031;
+                        top: 0;
+                        left: 0;
+            
+                        width: 100%;
+                        height: ${y};
+                      }
+            
+                      /* Fancy blur effect */
+                      #nprogress .peg {
+                        display: block;
+                        position: absolute;
+                        right: 0px;
+                        width: 100px;
+                        height: 100%;
+                        box-shadow: 0 0 10px ${o}, 0 0 5px ${o};
+                        opacity: 1.0;
+            
+                        -webkit-transform: rotate(3deg) translate(0px, -4px);
+                            -ms-transform: rotate(3deg) translate(0px, -4px);
+                                transform: rotate(3deg) translate(0px, -4px);
+                      }
+            
+                      /* Remove these to get rid of the spinner */
+                      #nprogress .spinner {
+                        display: block;
+                        position: fixed;
+                        z-index: 1031;
+                        top: 15px;
+                        right: 15px;
+                      }
+            
+                      #nprogress .spinner-icon {
+                        width: 18px;
+                        height: 18px;
+                        box-sizing: border-box;
+            
+                        border: solid 2px transparent;
+                        border-top-color: ${o};
+                        border-left-color: ${o};
+                        border-radius: 50%;
+            
+                        -webkit-animation: nprogress-spinner 400ms linear infinite;
+                                animation: nprogress-spinner 400ms linear infinite;
+                      }
+            
+                      .nprogress-custom-parent {
+                        overflow: hidden;
+                        position: relative;
+                      }
+            
+                      .nprogress-custom-parent #nprogress .spinner,
+                      .nprogress-custom-parent #nprogress .bar {
+                        position: absolute;
+                      }
+            
+                      @-webkit-keyframes nprogress-spinner {
+                        0%   { -webkit-transform: rotate(0deg); }
+                        100% { -webkit-transform: rotate(360deg); }
+                      }
+                      @keyframes nprogress-spinner {
+                        0%   { transform: rotate(0deg); }
+                        100% { transform: rotate(360deg); }
+                      }
+                `)},()=>!0);x.displayName="ProgressBar";var k=x;var P=require("next/navigation"),u=i(require("nprogress"));var B=()=>{let r=(0,P.useRouter)();return{...r,push:(n,o)=>{p(n)&&u.default.start(),r.push(n,o)},back:()=>(u.default.start(),r.back())}},L=B;0&&(module.exports={Link,ProgressBar,useRouter});
 //# sourceMappingURL=index.js.map

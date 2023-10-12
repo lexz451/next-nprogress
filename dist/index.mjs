@@ -1,72 +1,76 @@
-import { __assign } from 'tslib';
-import NextLink from 'next/link';
-import React, { memo, useEffect } from 'react';
-import nProgress from 'nprogress';
-import { usePathname, useSearchParams, useRouter as useRouter$1 } from 'next/navigation';
-
-function isModifiedEvent(event) {
-    var eventTarget = event.currentTarget;
-    var target = eventTarget.getAttribute("target");
-    return ((target && target !== "_self") ||
-        event.metaKey ||
-        event.ctrlKey ||
-        event.shiftKey ||
-        event.altKey || // triggers resource download
-        (event.nativeEvent && event.nativeEvent.button === 1));
-}
-var shouldTriggerProgressStart = function (href, event) {
-    var current = window.location;
-    var target = new URL(href.toString(), window.location.href);
-    if (event && isModifiedEvent(event))
-        return false;
-    if (current.origin !== target.origin)
-        return false;
-    if (current.pathname === target.pathname && current.search === target.search)
-        return false;
-    return true;
-};
-
-function Link(props) {
-    return (React.createElement(NextLink, __assign({}, props, { onClick: function (event) {
-            if (shouldTriggerProgressStart(props.href, event))
-                nProgress.start();
-            if (props.onClick)
-                props.onClick(event);
-        }, className: props.className }), props.children));
-}
-
-var ProgressBar = memo(function ProgressBar(props) {
-    if (props === void 0) { props = {
-        color: '#29D',
-        height: '2px',
-        options: nProgress.settings,
-        delay: 0,
-    }; }
-    nProgress.configure(props.options);
-    var pathName = usePathname();
-    var searchParams = useSearchParams();
-    useEffect(function () {
-        nProgress.done();
-    }, [pathName, searchParams]);
-    var color = props.color, height = props.height;
-    return (React.createElement("style", null, "\n                      #nprogress {\n                        pointer-events: none;\n                      }\n            \n                      #nprogress .bar {\n                        background: ".concat(color, ";\n            \n                        position: fixed;\n                        z-index: 1031;\n                        top: 0;\n                        left: 0;\n            \n                        width: 100%;\n                        height: ").concat(height, ";\n                      }\n            \n                      /* Fancy blur effect */\n                      #nprogress .peg {\n                        display: block;\n                        position: absolute;\n                        right: 0px;\n                        width: 100px;\n                        height: 100%;\n                        box-shadow: 0 0 10px ").concat(color, ", 0 0 5px ").concat(color, ";\n                        opacity: 1.0;\n            \n                        -webkit-transform: rotate(3deg) translate(0px, -4px);\n                            -ms-transform: rotate(3deg) translate(0px, -4px);\n                                transform: rotate(3deg) translate(0px, -4px);\n                      }\n            \n                      /* Remove these to get rid of the spinner */\n                      #nprogress .spinner {\n                        display: block;\n                        position: fixed;\n                        z-index: 1031;\n                        top: 15px;\n                        right: 15px;\n                      }\n            \n                      #nprogress .spinner-icon {\n                        width: 18px;\n                        height: 18px;\n                        box-sizing: border-box;\n            \n                        border: solid 2px transparent;\n                        border-top-color: ").concat(color, ";\n                        border-left-color: ").concat(color, ";\n                        border-radius: 50%;\n            \n                        -webkit-animation: nprogress-spinner 400ms linear infinite;\n                                animation: nprogress-spinner 400ms linear infinite;\n                      }\n            \n                      .nprogress-custom-parent {\n                        overflow: hidden;\n                        position: relative;\n                      }\n            \n                      .nprogress-custom-parent #nprogress .spinner,\n                      .nprogress-custom-parent #nprogress .bar {\n                        position: absolute;\n                      }\n            \n                      @-webkit-keyframes nprogress-spinner {\n                        0%   { -webkit-transform: rotate(0deg); }\n                        100% { -webkit-transform: rotate(360deg); }\n                      }\n                      @keyframes nprogress-spinner {\n                        0%   { transform: rotate(0deg); }\n                        100% { transform: rotate(360deg); }\n                      }\n                ")));
-}, function () { return true; });
-ProgressBar.displayName = "ProgressBar";
-
-var useRouter = function () {
-    var router = useRouter$1();
-    var push = function (href, options) {
-        if (shouldTriggerProgressStart(href)) {
-            nProgress.start();
-        }
-        router.push(href, options);
-    };
-    var back = function () {
-        nProgress.start();
-        return router.back();
-    };
-    return __assign(__assign({}, router), { push: push, back: back });
-};
-
-export { Link, ProgressBar, useRouter };
+"use client"
+import p from"next/link";import i,{Suspense as u}from"react";function f(r){let t=r.currentTarget.getAttribute("target");return t&&t!=="_self"||r.metaKey||r.ctrlKey||r.shiftKey||r.altKey||r.nativeEvent&&r.nativeEvent.button===1}var s=(r,e)=>{let t=window.location,o=new URL(r.toString(),window.location.href);return!(e&&f(e)||t.origin!==o.origin||t.pathname===o.pathname&&t.search===o.search)};import d from"nprogress";function h(r){return i.createElement(p,{...r},r.children)}function g(r){return i.createElement(u,{fallback:i.createElement(h,{...r})},i.createElement(p,{...r,onClick:e=>{s(r.href,e)&&d.start(),r.onClick&&r.onClick(e)}},r.children))}import b from"react";import{usePathname as x,useSearchParams as k}from"next/navigation";import a from"nprogress";import{memo as P,useEffect as L}from"react";var m=P(function(e={color:"#29D",height:"2px",options:a.settings,delay:0}){a.configure(e.options);let t=x(),o=k();L(()=>{a.done()},[t,o]);let{color:n,height:l}=e;return b.createElement("style",null,`
+                      #nprogress {
+                        pointer-events: none;
+                      }
+            
+                      #nprogress .bar {
+                        background: ${n};
+            
+                        position: fixed;
+                        z-index: 1031;
+                        top: 0;
+                        left: 0;
+            
+                        width: 100%;
+                        height: ${l};
+                      }
+            
+                      /* Fancy blur effect */
+                      #nprogress .peg {
+                        display: block;
+                        position: absolute;
+                        right: 0px;
+                        width: 100px;
+                        height: 100%;
+                        box-shadow: 0 0 10px ${n}, 0 0 5px ${n};
+                        opacity: 1.0;
+            
+                        -webkit-transform: rotate(3deg) translate(0px, -4px);
+                            -ms-transform: rotate(3deg) translate(0px, -4px);
+                                transform: rotate(3deg) translate(0px, -4px);
+                      }
+            
+                      /* Remove these to get rid of the spinner */
+                      #nprogress .spinner {
+                        display: block;
+                        position: fixed;
+                        z-index: 1031;
+                        top: 15px;
+                        right: 15px;
+                      }
+            
+                      #nprogress .spinner-icon {
+                        width: 18px;
+                        height: 18px;
+                        box-sizing: border-box;
+            
+                        border: solid 2px transparent;
+                        border-top-color: ${n};
+                        border-left-color: ${n};
+                        border-radius: 50%;
+            
+                        -webkit-animation: nprogress-spinner 400ms linear infinite;
+                                animation: nprogress-spinner 400ms linear infinite;
+                      }
+            
+                      .nprogress-custom-parent {
+                        overflow: hidden;
+                        position: relative;
+                      }
+            
+                      .nprogress-custom-parent #nprogress .spinner,
+                      .nprogress-custom-parent #nprogress .bar {
+                        position: absolute;
+                      }
+            
+                      @-webkit-keyframes nprogress-spinner {
+                        0%   { -webkit-transform: rotate(0deg); }
+                        100% { -webkit-transform: rotate(360deg); }
+                      }
+                      @keyframes nprogress-spinner {
+                        0%   { transform: rotate(0deg); }
+                        100% { transform: rotate(360deg); }
+                      }
+                `)},()=>!0);m.displayName="ProgressBar";var y=m;import{useRouter as w}from"next/navigation";import c from"nprogress";var E=()=>{let r=w();return{...r,push:(o,n)=>{s(o)&&c.start(),r.push(o,n)},back:()=>(c.start(),r.back())}},N=E;export{g as Link,y as ProgressBar,N as useRouter};
 //# sourceMappingURL=index.mjs.map

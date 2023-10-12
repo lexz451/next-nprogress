@@ -1,12 +1,9 @@
 {
   "name": "next-nprogress",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
   "scripts": {
-    "build": "rollup -c --bundleConfigAsCjs",
-    "start": "rollup -c -w --bundleConfigAsCjs"
+    "build": "tsup ./src/index.ts"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +20,7 @@
     "react-dom": "^18.2.0",
     "rollup": "^4.0.2",
     "tslib": "^2.6.2",
+    "tsup": "^7.2.0",
     "typescript": "^5.2.2"
   },
   "dependencies": {
