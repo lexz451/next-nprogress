@@ -128,7 +128,6 @@ passing options to the progress bar:
     trickleSpeed: 50,
     showSpinner: false,
   }}
-  delay={0}
 />
 ```
 
