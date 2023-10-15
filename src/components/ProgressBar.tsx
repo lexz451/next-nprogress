@@ -5,10 +5,10 @@ import nProgress, { NProgressOptions } from "nprogress";
 import { memo, useEffect } from "react";
 
 type ProgressBarProps = {
-    color: string;
-    height: string,
-    options: Partial<NProgressOptions>,
-    delay: number,
+    color?: string;
+    height?: string,
+    options?: Partial<NProgressOptions>,
+    delay?: number,
 }
 const ProgressBar = memo(
     function ProgressBar(
