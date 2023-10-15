@@ -7,8 +7,7 @@ import { memo, useEffect } from "react";
 type ProgressBarProps = {
     color?: string;
     height?: string,
-    options?: Partial<NProgressOptions>,
-    delay?: number,
+    options?: Partial<NProgressOptions>
 }
 const ProgressBar = memo(
     function ProgressBar(
@@ -16,7 +15,6 @@ const ProgressBar = memo(
             color: '#29D',
             height: '2px',
             options: nProgress.settings,
-            delay: 0,
         }
     ): JSX.Element {
         nProgress.configure(props.options);
