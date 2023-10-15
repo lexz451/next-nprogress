@@ -7,7 +7,6 @@ next-nprogress
 
 
 <p align="center">
-<img src="https://img.shields.io/badge/esbuild-FFCF00.svg?style&logo=esbuild&logoColor=black" alt="esbuild" />
 <img src="https://img.shields.io/badge/Next.js-000000.svg?style&logo=Next.js&logoColor=white" alt="Next.js" />
 <img src="https://img.shields.io/badge/React-61DAFB.svg?style&logo=React&logoColor=black" alt="React" />
 <img src="https://img.shields.io/badge/TypeScript-3178C6.svg?style&logo=TypeScript&logoColor=white" alt="TypeScript" />
@@ -31,17 +30,17 @@ Integrate nprogress with Next.js 13. Compatible with the new app directory struc
 Install the package with npm:
 
 ```sh
-npm install next-nprogress
+npm install @lexz451/next-nprogress
 ```
 or yarn:
 
 ```sh
-yarn add next-nprogress
+yarn add @lexz451/next-nprogress
 ```
 or pnpm:
 
 ```sh
-pnpm add next-nprogress
+pnpm add @lexz451/next-nprogress
 ```
 
 ---
@@ -51,7 +50,7 @@ pnpm add next-nprogress
 Add the ProgressBar component to your app layout. It will automatically render the progress bar when a page is loading.
 
 ```tsx
-import { ProgressBar } from 'next-nprogress';
+import { ProgressBar } from '@lexz451/next-nprogress';
 
 export default function RootLayout({
   children,
@@ -81,7 +80,7 @@ export default function RootLayout({
 Use the Link component provided by next-nprogress.
 
 ```tsx
-import { Link } from 'next-nprogress';
+import { Link } from '@lexz451/next-nprogress';
 
 export default function Navbar() {
   return (
@@ -96,7 +95,7 @@ export default function Navbar() {
 Use the router hook provided by next-nprogress.
 
 ```tsx
-import { useRouter } from 'next-nprogress';
+import { useRouter } from '@lexz451/next-nprogress';
 
 export default function Navbar() {
   const router = useRouter();
