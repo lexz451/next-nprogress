@@ -10,10 +10,9 @@ type LinkProps = LinkProps$1 & {
 declare function Link(props: LinkProps): React.JSX.Element;
 
 type ProgressBarProps = {
-    color: string;
-    height: string;
-    options: Partial<NProgressOptions>;
-    delay: number;
+    color?: string | undefined;
+    height?: string | undefined;
+    options?: Partial<NProgressOptions> | undefined;
 };
 declare const ProgressBar: React.NamedExoticComponent<ProgressBarProps>;
 

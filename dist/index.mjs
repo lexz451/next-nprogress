@@ -1,5 +1,5 @@
 "use client"
-import p from"next/link";import i,{Suspense as u}from"react";function f(r){let t=r.currentTarget.getAttribute("target");return t&&t!=="_self"||r.metaKey||r.ctrlKey||r.shiftKey||r.altKey||r.nativeEvent&&r.nativeEvent.button===1}var s=(r,e)=>{let t=window.location,o=new URL(r.toString(),window.location.href);return!(e&&f(e)||t.origin!==o.origin||t.pathname===o.pathname&&t.search===o.search)};import d from"nprogress";function h(r){return i.createElement(p,{...r},r.children)}function g(r){return i.createElement(u,{fallback:i.createElement(h,{...r})},i.createElement(p,{...r,onClick:e=>{s(r.href,e)&&d.start(),r.onClick&&r.onClick(e)}},r.children))}import b from"react";import{usePathname as x,useSearchParams as k}from"next/navigation";import a from"nprogress";import{memo as P,useEffect as L}from"react";var m=P(function(e={color:"#29D",height:"2px",options:a.settings,delay:0}){a.configure(e.options);let t=x(),o=k();L(()=>{a.done()},[t,o]);let{color:n,height:l}=e;return b.createElement("style",null,`
+import p from"next/link";import i,{Suspense as u}from"react";function l(r){let t=r.currentTarget.getAttribute("target");return t&&t!=="_self"||r.metaKey||r.ctrlKey||r.shiftKey||r.altKey||r.nativeEvent&&r.nativeEvent.button===1}var s=(r,e)=>{let t=window.location,o=new URL(r.toString(),window.location.href);return!(e&&l(e)||t.origin!==o.origin||t.pathname===o.pathname&&t.search===o.search)};import d from"nprogress";function h(r){return i.createElement(p,{...r},r.children)}function g(r){return i.createElement(u,{fallback:i.createElement(h,{...r})},i.createElement(p,{...r,onClick:e=>{s(r.href,e)&&d.start(),r.onClick&&r.onClick(e)}},r.children))}import b from"react";import{usePathname as x,useSearchParams as k}from"next/navigation";import a from"nprogress";import{memo as P,useEffect as L}from"react";var m=P(function(e={color:"#29D",height:"2px",options:a.settings}){a.configure(e.options);let t=x(),o=k();L(()=>{a.done()},[t,o]);let{color:n,height:f}=e;return b.createElement("style",null,`
                       #nprogress {
                         pointer-events: none;
                       }
@@ -13,7 +13,7 @@ import p from"next/link";import i,{Suspense as u}from"react";function f(r){let t
                         left: 0;
             
                         width: 100%;
-                        height: ${l};
+                        height: ${f};
                       }
             
                       /* Fancy blur effect */
@@ -72,5 +72,5 @@ import p from"next/link";import i,{Suspense as u}from"react";function f(r){let t
                         0%   { transform: rotate(0deg); }
                         100% { transform: rotate(360deg); }
                       }
-                `)},()=>!0);m.displayName="ProgressBar";var y=m;import{useRouter as w}from"next/navigation";import c from"nprogress";var E=()=>{let r=w();return{...r,push:(o,n)=>{s(o)&&c.start(),r.push(o,n)},back:()=>(c.start(),r.back())}},N=E;export{g as Link,y as ProgressBar,N as useRouter};
+                `)},()=>!0);m.displayName="ProgressBar";var w=m;import{useRouter as y}from"next/navigation";import c from"nprogress";var E=()=>{let r=y();return{...r,push:(o,n)=>{s(o)&&c.start(),r.push(o,n)},back:()=>(c.start(),r.back())}},N=E;export{g as Link,w as ProgressBar,N as useRouter};
 //# sourceMappingURL=index.mjs.map

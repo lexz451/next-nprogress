@@ -5,9 +5,9 @@ import nProgress, { NProgressOptions } from "nprogress";
 import { memo, useEffect } from "react";
 
 type ProgressBarProps = {
-    color?: string;
-    height?: string,
-    options?: Partial<NProgressOptions>
+    color?: string | undefined;
+    height?: string | undefined,
+    options?: Partial<NProgressOptions> | undefined
 }
 const ProgressBar = memo(
     function ProgressBar(
