@@ -20,7 +20,7 @@ export const shouldTriggerProgressStart = (
     const current = window.location;
     const target = new URL(href.toString(), window.location.href);
     if (event && isModifiedEvent(event)) return false;
-    if (current.origin !== target.origin) return false;
-    if (current.pathname === target.pathname && current.search === target.search) return false;
+    // if (current.origin !== target.origin) return false;
+    // if (current.pathname === target.pathname && current.search === target.search) return false;
     return true;
 };
