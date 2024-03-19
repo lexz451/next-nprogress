@@ -95,6 +95,8 @@ export default function Navbar() {
 Use the router hook provided by next-nprogress.
 
 ```tsx
+'use client';
+
 import { useRouter } from '@lexz451/next-nprogress';
 
 export default function Navbar() {
