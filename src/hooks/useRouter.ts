@@ -1,7 +1,6 @@
 import { useRouter as useNextRouter } from "next/navigation";
 import { NavigateOptions } from "next/dist/shared/lib/app-router-context.shared-runtime";
-import nProgress from "nprogress";
-import { shouldTriggerProgressStart } from "../utils/shouldTriggerEventStart";
+import { completeProgress, isSameUrlNavigation, startProgress } from "../utils/nprogress";
 
 const useRouter = () => {
     const router = useNextRouter();
@@ -10,14 +9,15 @@ const useRouter = () => {
         href: string,
         options?: NavigateOptions
     ) => {
-        if (shouldTriggerProgressStart(href)) {            
-            nProgress.start();
-        }
+        startProgress();
         router.push(href, options);
+        if (isSameUrlNavigation(href)) {
+            completeProgress();
+        }
     }
 
     const back = () => {
-        nProgress.start();
+        startProgress();
         return router.back();
     }
 

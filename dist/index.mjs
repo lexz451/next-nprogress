@@ -1,11 +1,11 @@
 "use client"
-import p from"next/link";import i,{Suspense as u}from"react";function l(r){let t=r.currentTarget.getAttribute("target");return t&&t!=="_self"||r.metaKey||r.ctrlKey||r.shiftKey||r.altKey||r.nativeEvent&&r.nativeEvent.button===1}var s=(r,e)=>{let t=window.location,o=new URL(r.toString(),window.location.href);return!(e&&l(e)||t.origin!==o.origin||t.pathname===o.pathname&&t.search===o.search)};import d from"nprogress";function h(r){return i.createElement(p,{...r},r.children)}function g(r){return i.createElement(u,{fallback:i.createElement(h,{...r})},i.createElement(p,{...r,onClick:e=>{s(r.href,e)&&d.start(),r.onClick&&r.onClick(e)}},r.children))}import b from"react";import{usePathname as x,useSearchParams as k}from"next/navigation";import a from"nprogress";import{memo as P,useEffect as L}from"react";var m=P(function(e={color:"#29D",height:"2px",options:a.settings}){a.configure(e.options);let t=x(),o=k();L(()=>{a.done()},[t,o]);let{color:n,height:f}=e;return b.createElement("style",null,`
+import l from"next/link";import m,{Suspense as h}from"react";import a from"nprogress";var g=r=>{a.configure({...a.settings,...r})},c=r=>{let t=r.currentTarget.getAttribute("target");return t&&t!=="_self"||r.metaKey||r.ctrlKey||r.shiftKey||r.altKey||r.nativeEvent&&r.nativeEvent.button===1},p=r=>{let e=window.location,t=new URL(r.toString(),window.location.href);return!(e.origin!==t.origin||e.pathname!==t.pathname&&e.search!==t.search)},n=()=>{a.start()},s=()=>{a.done(),document.documentElement.classList.remove("nprogress-busy")};function x(r){return m.createElement(l,{...r},r.children)}function f(r){return m.createElement(h,{fallback:m.createElement(x,{...r})},m.createElement(l,{...r,onClick:e=>{c(e)||(n(),r.onClick&&r.onClick(e),p(r.href)&&s())}},r.children))}import b from"react";import{usePathname as P,useSearchParams as k}from"next/navigation";import{memo as L,useEffect as N}from"react";var u=L(function(e={color:"#29D",height:"2px",options:{}}){g(e.options);let t=P(),i=k();N(()=>{s()},[t,i]);let{color:o,height:d}=e;return b.createElement("style",null,`
                       #nprogress {
                         pointer-events: none;
                       }
             
                       #nprogress .bar {
-                        background: ${n};
+                        background: ${o};
             
                         position: fixed;
                         z-index: 1031;
@@ -13,7 +13,7 @@ import p from"next/link";import i,{Suspense as u}from"react";function l(r){let t
                         left: 0;
             
                         width: 100%;
-                        height: ${f};
+                        height: ${d};
                       }
             
                       /* Fancy blur effect */
@@ -23,7 +23,7 @@ import p from"next/link";import i,{Suspense as u}from"react";function l(r){let t
                         right: 0px;
                         width: 100px;
                         height: 100%;
-                        box-shadow: 0 0 10px ${n}, 0 0 5px ${n};
+                        box-shadow: 0 0 10px ${o}, 0 0 5px ${o};
                         opacity: 1.0;
             
                         -webkit-transform: rotate(3deg) translate(0px, -4px);
@@ -46,8 +46,8 @@ import p from"next/link";import i,{Suspense as u}from"react";function l(r){let t
                         box-sizing: border-box;
             
                         border: solid 2px transparent;
-                        border-top-color: ${n};
-                        border-left-color: ${n};
+                        border-top-color: ${o};
+                        border-left-color: ${o};
                         border-radius: 50%;
             
                         -webkit-animation: nprogress-spinner 400ms linear infinite;
@@ -72,5 +72,5 @@ import p from"next/link";import i,{Suspense as u}from"react";function l(r){let t
                         0%   { transform: rotate(0deg); }
                         100% { transform: rotate(360deg); }
                       }
-                `)},()=>!0);m.displayName="ProgressBar";var w=m;import{useRouter as y}from"next/navigation";import c from"nprogress";var E=()=>{let r=y();return{...r,push:(o,n)=>{s(o)&&c.start(),r.push(o,n)},back:()=>(c.start(),r.back())}},N=E;export{g as Link,w as ProgressBar,N as useRouter};
+                `)},()=>!0);u.displayName="ProgressBar";var y=u;import{useRouter as w}from"next/navigation";var v=()=>{let r=w();return{...r,push:(i,o)=>{n(),r.push(i,o),p(i)&&s()},back:()=>(n(),r.back())}},E=v;export{f as Link,y as ProgressBar,E as useRouter};
 //# sourceMappingURL=index.mjs.map

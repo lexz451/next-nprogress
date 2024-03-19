@@ -1,8 +1,9 @@
 'use client';
 import React from "react";
 import { usePathname, useSearchParams } from "next/navigation";
-import nProgress, { NProgressOptions } from "nprogress";
 import { memo, useEffect } from "react";
+import { completeProgress, configureProgress } from "../utils/nprogress";
+import { NProgressOptions } from "nprogress";
 
 type ProgressBarProps = {
     color?: string | undefined;
@@ -14,16 +15,16 @@ const ProgressBar = memo(
         props: ProgressBarProps = {
             color: '#29D',
             height: '2px',
-            options: nProgress.settings,
+            options: {}
         }
     ): JSX.Element {
-        nProgress.configure(props.options);
+        configureProgress(props.options);
 
         const pathName = usePathname();
         const searchParams = useSearchParams();
 
         useEffect(() => {
-            nProgress.done();
+            completeProgress();
         }, [pathName, searchParams]);
 
         const { color, height } = props;

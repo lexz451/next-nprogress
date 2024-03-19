@@ -2,8 +2,7 @@
 import { LinkProps as NextLinkProps } from 'next/link';
 import NextLink from 'next/link';
 import React, { Suspense } from 'react';
-import { shouldTriggerProgressStart } from '../utils/shouldTriggerEventStart';
-import nProgress from 'nprogress';
+import { completeProgress, isModifiedEvent, isSameUrlNavigation, startProgress } from '../utils/nprogress';
 
 type LinkProps = NextLinkProps & { children: React.ReactNode } & React.RefAttributes<HTMLAnchorElement> & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
@@ -22,8 +21,12 @@ export default function Link(props: LinkProps) {
         }>
             <NextLink {...props} onClick={
                 (event) => {
-                    if (shouldTriggerProgressStart(props.href, event)) nProgress.start();
+                    if (isModifiedEvent(event)) return;
+                    startProgress();
                     if (props.onClick) props.onClick(event);
+                    if (isSameUrlNavigation(props.href)) {
+                        completeProgress();
+                    }
                 }
             }>
                 {props.children}
