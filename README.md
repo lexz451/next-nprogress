@@ -60,13 +60,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <ProgressBar
+        <Suspense fallback={true}>
+          <ProgressBar
             color='#333'
             height='2px'
             options={{
               showSpinner: false,
             }}
           />
+        </Suspense>
       </head>
       <body>
         <Navbar />
