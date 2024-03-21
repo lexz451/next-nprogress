@@ -59,18 +59,19 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <ProgressBar
+            color='#333'
+            height='2px'
+            options={{
+              showSpinner: false,
+            }}
+          />
+      </head>
       <body>
         <Navbar />
         {children}
         <Footer />
-        <Suspense fallback={null}>
-          <ProgressBar
-            color='#333'
-            height='2px'
-            options={{}}
-            delay={0}
-          />
-        </Suspense>
       </body>
     </html>
   )
@@ -118,7 +119,6 @@ Available props for the ProgressBar component:
 | color | string | #29D | The color of the progress bar. |
 | height | string | 2px | The height of the progress bar. |
 | options | object | {} | The options passed to nprogress. |
-| delay | number | 0 | The delay in milliseconds before the progress bar is shown. |
 
 passing options to the progress bar:
 

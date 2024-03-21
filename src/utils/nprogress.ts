@@ -24,9 +24,7 @@ export const isModifiedEvent = (event: React.MouseEvent): boolean => {
 export const isSameUrlNavigation = (href: string | UrlObject) => {
     const current = window.location;
     const target = new URL(href.toString(), window.location.href);
-    if (current.origin !== target.origin) return false;
-    if (current.pathname !== target.pathname && current.search !== target.search) return false;
-    return true;
+    return current.origin === target.origin && current.pathname === target.pathname && current.search === target.search;
 }
 
 export const startProgress = () => {
