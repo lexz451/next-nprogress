@@ -21,6 +21,7 @@ export default function Link(props: LinkProps) {
         }>
             <NextLink {...props} onClick={
                 (event) => {
+                    if (event.currentTarget.href.startsWith("#")) return;
                     if (isModifiedEvent(event)) return;
                     startProgress();
                     if (props.onClick) props.onClick(event);
