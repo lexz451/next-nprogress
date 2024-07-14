@@ -13,7 +13,7 @@ type ProgressBarProps = {
 const ProgressBar = memo(
   function ProgressBar(
     {
-      color = "#29D",
+      color = "hsl(var(--primary, 202, 73%, 50%))",
       height = "2px",
       options = {}
     }: ProgressBarProps
