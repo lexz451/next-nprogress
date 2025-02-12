@@ -1,6 +1,6 @@
 {
   "name": "@lexz451/next-nprogress",
-  "version": "0.2.9",
+  "version": "0.3.1",
   "description": "NProgress integration with Next 13",
   "private": false,
   "repository": {
