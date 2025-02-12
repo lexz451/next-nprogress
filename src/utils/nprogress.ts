@@ -13,6 +13,7 @@ export const isModifiedEvent = (event: React.MouseEvent): boolean => {
     const target = eventTarget.getAttribute("target");
     return (
       (target && target !== "_self") ||
+      event.defaultPrevented ||
       event.metaKey ||
       event.ctrlKey ||
       event.shiftKey ||
